@@ -4,7 +4,7 @@ services:
     image: nginx:latest
     container_name: nginx
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./wifidns.top.conf:/etc/nginx/conf.d/wifidns.top.template
       - ~/dockerdata/log/nginx/:/var/log/nginx/
       - /etc/letsencrypt/:/etc/letsencrypt/
     ports:
@@ -14,9 +14,7 @@ services:
       - nginx
     env_file:
       - ./common.env
-    environment:
-      - ENV=development
-      - APPLICATION_URL=http://ismydependencysafe
+    command: /bin/bash -c "envsubst < /etc/nginx/conf.d/wifidns.top.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
 networks:
   nginx:
     external:
