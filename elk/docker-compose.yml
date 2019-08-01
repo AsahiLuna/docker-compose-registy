@@ -12,3 +12,9 @@ services:
     #   - ES_JAVA_OPTS=-Xms512m -Xmx512m
     volumes:
       - ~/dockerdata/elk:/var/lib/elasticsearch
+    networks:
+      - metricbeat
+networks:
+  metricbeat:
+    external:
+      name: metricbeat
