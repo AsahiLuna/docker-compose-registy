@@ -13,8 +13,8 @@ services:
     volumes:
       - ~/dockerdata/elk:/var/lib/elasticsearch
     networks:
-      - metricbeat
+      - elk
+
 networks:
-  metricbeat:
-    external:
-      name: metricbeat
+  elk:
+    external: true

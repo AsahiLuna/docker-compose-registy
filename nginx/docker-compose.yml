@@ -11,11 +11,10 @@ services:
       - 80:80
       - 443:443
     networks:
-      - nginx
+      - elk
     env_file:
       - ./common.env
     command: /bin/bash -c "envsubst < /etc/nginx/conf.d/wifidns.top.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
 networks:
-  nginx:
-    external:
-      name: metricbeat
+  elk:
+    external: true

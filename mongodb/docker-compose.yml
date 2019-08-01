@@ -12,3 +12,9 @@ services:
       - "~/dockerdata/mongo:/data/db"
       - "./mongo-entrypoint/:/docker-entrypoint-initdb.d/"
     command: mongod
+    networks: 
+      - elk
+
+networks:
+  elk:
+    external: true
