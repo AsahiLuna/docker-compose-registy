@@ -13,6 +13,35 @@ filebeat.modules:
   error:
     enabled: true
     var.paths: ["/data/logs/nginx/error.log*"]
+- module: elasticsearch
+  server:
+    enabled: true
+    var.paths:
+      - /data/logs/elasticsearch/*.log          # Plain text logs
+      - /data/logs/elasticsearch/*_server.json  # JSON logs
+  gc:
+    enabled: true
+    var.paths:
+      - /data/logs/elasticsearch/gc.log.[0-9]*
+      - /data/logs/elasticsearch/gc.log
+  audit:
+    enabled: true
+    var.paths:
+      - /data/logs/elasticsearch/*_access.log  # Plain text logs
+      - /data/logs/elasticsearch/*_audit.json  # JSON logs
+  slowlog:
+    enabled: true
+    var.paths:
+      - /data/logs/elasticsearch/*_index_search_slowlog.log     # Plain text logs
+      - /data/logs/elasticsearch/*_index_indexing_slowlog.log   # Plain text logs
+      - /data/logs/elasticsearch/*_index_search_slowlog.json    # JSON logs
+      - /data/logs/elasticsearch/*_index_indexing_slowlog.json  # JSON logs
+  deprecation:
+    enabled: true
+    var.paths:
+      - /data/logs/elasticsearch/*_deprecation.log   # Plain text logs
+      - /data/logs/elasticsearch/*_deprecation.json  # JSON logs
+
 
 output:
   elasticsearch:
