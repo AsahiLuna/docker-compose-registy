@@ -1,0 +1,25 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/system.log
+    - /var/log/wifi.log
+
+filebeat.modules:
+- module: nginx
+  access:
+    enabled: true
+    var.paths: ["/data/logs/nginx/access.log*"]
+  error:
+    enabled: true
+    var.paths: ["/data/logs/nginx/error.log*"]
+
+output:
+  elasticsearch:
+    hosts: ["elk:9200"]
+setup:
+  kibana:
+    host: "elk:5601"
+  dashboards:
+    enabled: true
+

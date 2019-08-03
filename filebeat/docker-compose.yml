@@ -1,0 +1,19 @@
+version: '2'
+services:
+  filebeat:
+    build: ./docker/filebeat
+    container_name: filebeat
+    volumes:
+      - /var/log/:/var/log/
+      - ~/dockerdata/log/:/data/logs/
+    environment:
+      - "WAIT_FOR_HOSTS=elk:9200 elk:5601"
+      - "HOST_ELASTICSEARCH=elk:9200"
+      - "HOST_KIBANA=elk:5601"
+    networks:
+      - elk
+
+networks:
+  elk:
+    external: true
+

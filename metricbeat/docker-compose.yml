@@ -1,0 +1,17 @@
+version: "2.2"
+services:
+  # Container to monitor services running inside other containers
+  metricbeat:
+    build: ./docker/metricbeat
+    container_name: metricbeat
+    command: -e
+    environment:
+      - "WAIT_FOR_HOSTS=elk:9200 elk:5601"
+      - "HOST_ELASTICSEARCH=elk:9200"
+      - "HOST_KIBANA=elk:5601"
+    networks:
+      - elk
+
+networks:
+  elk:
+    external: true
