@@ -6,8 +6,8 @@ metricbeat.modules:
   metricsets: ["node"]
   period: 5s
   hosts: ["rabbitmq:15672"]
-  username: guest
-  password: guest
+  username: rabbitmq
+  password: rabbitmq
 
 #------------------------------- MySQL Module -------------------------------
 - module: mysql
