@@ -1,8 +1,9 @@
 version: '3'
 services:
-  rabbit:
+  rabbitmq:
     image: "rabbitmq:3-management"
-    hostname: "rabbit"
+    hostname: "rabbitmq"
+    container_name: "rabbitmq"
     environment:
       RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
       RABBITMQ_DEFAULT_USER: "rabbitmq"
@@ -12,7 +13,7 @@ services:
       - "15672:15672"
       - "5672:5672"
     labels:
-      NAME: "rabbitmq1"
+      NAME: "rabbitmq"
     volumes:
       - "./enabled_plugins:/etc/rabbitmq/enabled_plugins"
       - "./rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro"
