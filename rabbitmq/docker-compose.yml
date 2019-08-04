@@ -16,7 +16,6 @@ services:
       NAME: "rabbitmq"
     volumes:
       - "./enabled_plugins:/etc/rabbitmq/enabled_plugins"
-      - "./rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro"
     networks:
       - elk
 networks:
