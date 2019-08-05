@@ -12,6 +12,7 @@ services:
       - "~/dockerdata/mongo:/data/db"
       - "./mongo-entrypoint/:/docker-entrypoint-initdb.d/"
       - ./mongo.conf:/etc/mongo.conf
+      - ~/dockerdata/log/mongo:/data/mongodb/logs
     command: mongod
     networks: 
       - elk
